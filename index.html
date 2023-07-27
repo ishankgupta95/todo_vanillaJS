@@ -8,17 +8,22 @@
   </head>
   <body>
     <div id="app">
-      <form>
+      <form class = "form">
         <div>
           <p>Title</p>
-          <input type="text" name="todo_title" id="todo_title">
+          <input type="text" name="todo_title" class="todo_title">
         </div>
         <div>
           <p>Description</p>
-          <input type="text" name="todo_desc" id="todo_desc">
+          <input type="text" name="todo_desc" class="todo_description">
         </div>
         <button type="button" id="submit_todo">Add</button>
       </form>
+
+      <div class="todo_list_wrapper">
+        <ul class="todo_list">
+        </ul>
+      </div>
     </div>
     <script type="module" src="/index.js"></script>
   </body>

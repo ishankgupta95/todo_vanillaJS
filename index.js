@@ -1,6 +1,5 @@
 //Grab all DOM elements
 const todoTitleInput = document.querySelector('.todo_title')
-const todoDescriptionInput = document.querySelector('.todo_description')
 const submit_todo = document.querySelector('#submit_todo')
 const todoList = document.querySelector('.todo_list')
 const todo = document.querySelectorAll('.todo')
@@ -23,12 +22,7 @@ const fetch_todo = () => {
             todoTitle.classList = 'todo_title'
             todoTitle.innerHTML = todo.title
 
-            const todoDescription = document.createElement('p')
-            todoDescription.classList = 'todo_description'
-            todoDescription.innerHTML = todo.description
-
             todoLi.appendChild(todoTitle)
-            todoLi.appendChild(todoDescription)
 
             todoList.appendChild(todoLi)
 
@@ -45,7 +39,6 @@ submit_todo.addEventListener('click', () => {
         method: 'POST',
         body: JSON.stringify({
             title: todoTitleInput.value,
-            description: todoDescriptionInput.value,
             done: false
         }),
         headers: {
@@ -61,12 +54,7 @@ submit_todo.addEventListener('click', () => {
     todoTitle.classList = 'todo_title'
     todoTitle.innerHTML = todoTitleInput.value
 
-    const todoDescription = document.createElement('p')
-    todoDescription.classList = 'todo_description'
-    todoDescription.innerHTML = todoDescriptionInput.value
-
     todoLi.appendChild(todoTitle)
-    todoLi.appendChild(todoDescription)
 
     todoList.appendChild(todoLi)
 })

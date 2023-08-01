@@ -18,3 +18,7 @@ body {
 .todo_list {
     list-style: none;
 }
+input {
+    border: none;
+    box-shadow: 2px 2px 20px 0px rgba(0,0,0,0.75);
+}

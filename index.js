@@ -53,5 +53,21 @@ submit_todo.addEventListener('click', () => {
         }
     }).then((response) => response.json())
       .then((json) => console.log(json))
+
+    const todoLi = document.createElement('li')
+    todoLi.classList = 'todo'
+
+    const todoTitle = document.createElement('h4')
+    todoTitle.classList = 'todo_title'
+    todoTitle.innerHTML = todoTitleInput.value
+
+    const todoDescription = document.createElement('p')
+    todoDescription.classList = 'todo_description'
+    todoDescription.innerHTML = todoDescriptionInput.value
+
+    todoLi.appendChild(todoTitle)
+    todoLi.appendChild(todoDescription)
+
+    todoList.appendChild(todoLi)
 })
 

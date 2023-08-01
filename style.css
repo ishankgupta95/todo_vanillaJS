@@ -5,6 +5,8 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
+    background-color: #F3F3F3;
 }
 
 #app{
@@ -12,13 +14,43 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    width: 40%;
     flex-direction: column;
+    margin: 0 auto;
+}
+
+.form-wrapper{
+    width: 100%;
+}
+
+.todo_list_wrapper{
+    width: 100%;
 }
 
 .todo_list {
     list-style: none;
+    max-height: 600px;
+    scroll-behavior: auto;
+    overflow: scroll;
+    padding: 0;
+    width: 100%;
+}
+
+.todo {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 16px;
 }
 input {
     border: none;
+    font-size: 18px;
+    padding: 18px;
+    width: 100%;
+    border-radius: 20px;
     box-shadow: 2px 2px 20px 0px rgba(0,0,0,0.75);
+}
+
+p{
+    line-height: 22px;
 }

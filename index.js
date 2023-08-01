@@ -1,6 +1,5 @@
 //Grab all DOM elements
 const todoTitleInput = document.querySelector('.todo_title')
-const submit_todo = document.querySelector('#submit_todo')
 const todoList = document.querySelector('.todo_list')
 const todo = document.querySelectorAll('.todo')
 
@@ -18,7 +17,7 @@ const fetch_todo = () => {
             const todoLi = document.createElement('li')
             todoLi.classList = 'todo'
 
-            const todoTitle = document.createElement('h4')
+            const todoTitle = document.createElement('p')
             todoTitle.classList = 'todo_title'
             todoTitle.innerHTML = todo.title
 
@@ -33,9 +32,13 @@ const fetch_todo = () => {
 fetch_todo()
 
 //Submit Todo
-submit_todo.addEventListener('click', () => {
-    
-    fetch('http://localhost:3000/todos', {
+
+todoTitleInput.addEventListener('keypress', (e) => {
+
+    if (e.key === "Enter") {
+        e.preventDefault();
+
+        fetch('http://localhost:3000/todos', {
         method: 'POST',
         body: JSON.stringify({
             title: todoTitleInput.value,
@@ -44,18 +47,23 @@ submit_todo.addEventListener('click', () => {
         headers: {
             'Content-type': 'application/json'
         }
-    }).then((response) => response.json())
-      .then((json) => console.log(json))
+        }).then((response) => response.json())
+        .then((json) => console.log(json))
 
-    const todoLi = document.createElement('li')
-    todoLi.classList = 'todo'
+        const todoLi = document.createElement('li')
+        todoLi.classList = 'todo'
 
-    const todoTitle = document.createElement('h4')
-    todoTitle.classList = 'todo_title'
-    todoTitle.innerHTML = todoTitleInput.value
+        const todoTitle = document.createElement('p')
+        todoTitle.classList = 'todo_title'
+        todoTitle.innerHTML = todoTitleInput.value
 
-    todoLi.appendChild(todoTitle)
+        todoLi.appendChild(todoTitle)
 
-    todoList.appendChild(todoLi)
+        todoList.appendChild(todoLi)
+        todoTitleInput.value = ''
+
+        }
 })
+
+
 

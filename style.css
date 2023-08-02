@@ -41,8 +41,11 @@ body {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
-input {
+.form input {
     border: none;
     font-size: 18px;
     padding: 18px;
@@ -54,3 +57,17 @@ input {
 p{
     line-height: 22px;
 }
+
+.todo.done p{
+    text-decoration: line-through;
+}
+
+.todo-checkbox {
+    flex-grow: 1;
+}
+
+.todo_list .todo_title {
+    flex-grow: 10;
+    max-width: 90%;
+}
+

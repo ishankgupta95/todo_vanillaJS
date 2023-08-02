@@ -14,17 +14,7 @@ const fetch_todo = () => {
         console.log(todos);
 
         todos.map(todo => {
-            const todoLi = document.createElement('li')
-            todoLi.classList = 'todo'
-
-            const todoTitle = document.createElement('p')
-            todoTitle.classList = 'todo_title'
-            todoTitle.innerHTML = todo.title
-
-            todoLi.appendChild(todoTitle)
-
-            todoList.appendChild(todoLi)
-
+            addTodoToUI(todo.title, todo.done)
         })
     })
 }
@@ -32,7 +22,6 @@ const fetch_todo = () => {
 fetch_todo()
 
 //Submit Todo
-
 todoTitleInput.addEventListener('keypress', (e) => {
 
     if (e.key === "Enter") {
@@ -50,20 +39,38 @@ todoTitleInput.addEventListener('keypress', (e) => {
         }).then((response) => response.json())
         .then((json) => console.log(json))
 
-        const todoLi = document.createElement('li')
-        todoLi.classList = 'todo'
-
-        const todoTitle = document.createElement('p')
-        todoTitle.classList = 'todo_title'
-        todoTitle.innerHTML = todoTitleInput.value
-
-        todoLi.appendChild(todoTitle)
-
-        todoList.appendChild(todoLi)
-        todoTitleInput.value = ''
-
-        }
+        addTodoToUI(todoTitleInput.value, false)
+    }
 })
+
+// add todo to UI
+const addTodoToUI = ( title, done ) => {
+    const todoLi = document.createElement('li')
+    todoLi.classList = 'todo'
+
+    const todoTitle = document.createElement('p')
+    todoTitle.classList = 'todo_title'
+    todoTitle.innerHTML = title
+
+    const checkBox = document.createElement("INPUT");
+    checkBox.setAttribute("type", "checkbox");
+    checkBox.classList = 'todo-checkbox'
+    checkBox.checked = done
+
+    if(done) {
+        todoLi.classList.add('done')
+    }
+
+    todoLi.appendChild(checkBox)
+    todoLi.appendChild(todoTitle)
+
+    todoList.appendChild(todoLi)
+    todoTitleInput.value = ''
+
+    checkBox.addEventListener('click', (event) => {
+        event.target.parentElement.classList.toggle('done')
+    })
+}
 
 
 

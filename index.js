@@ -4,7 +4,7 @@ const todoList = document.querySelector('.todo_list')
 const todo = document.querySelectorAll('.todo')
 
 //Fetch todos
-const fetch_todo = () => {
+const fetchTodo = () => {
     fetch('http://localhost:3000/todos', {
         method: 'GET',
     }).then((response) => response.json())
@@ -19,7 +19,7 @@ const fetch_todo = () => {
     })
 }
 
-fetch_todo()
+fetchTodo()
 
 //Submit Todo
 todoTitleInput.addEventListener('keypress', (e) => {
@@ -69,8 +69,23 @@ const addTodoToUI = ( title, done ) => {
 
     checkBox.addEventListener('click', (event) => {
         event.target.parentElement.classList.toggle('done')
+        // console.log(todo)
+        updateTodo(todo.id, title, done)
     })
 }
 
+const updateTodo = (id, title, done) => {
+    fetch('http://localhost:3000/todos/'+id, {
+        method: 'PUT',
+        body: JSON.stringify({
+            title: title,
+            done: done
+        }),
+        headers: {
+            'Content-type': 'application/json'
+        }
+        }).then((response) => response.json())
+        .then((json) => console.log(json))
+}
 
 

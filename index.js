@@ -14,7 +14,7 @@ const fetchTodo = () => {
         console.log(todos);
 
         todos.map(todo => {
-            addTodoToUI(todo.title, todo.done)
+            addTodoToUI(todo.id, todo.title, todo.done)
         })
     })
 }
@@ -37,14 +37,12 @@ todoTitleInput.addEventListener('keypress', (e) => {
             'Content-type': 'application/json'
         }
         }).then((response) => response.json())
-        .then((json) => console.log(json))
-
-        addTodoToUI(todoTitleInput.value, false)
+        .then((todo) => addTodoToUI(todo.id, todo.title, todo.done))
     }
 })
 
 // add todo to UI
-const addTodoToUI = ( title, done ) => {
+const addTodoToUI = (id, title, done) => {
     const todoLi = document.createElement('li')
     todoLi.classList = 'todo'
 
@@ -69,8 +67,12 @@ const addTodoToUI = ( title, done ) => {
 
     checkBox.addEventListener('click', (event) => {
         event.target.parentElement.classList.toggle('done')
-        // console.log(todo)
-        updateTodo(todo.id, title, done)
+        if(checkBox.checked){
+            done = true
+        } else {
+            done = false
+        }
+        updateTodo(id, title, done)
     })
 }
 
